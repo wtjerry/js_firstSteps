@@ -1,16 +1,15 @@
 let canvasWidth = 900;
-let canvasHeight = 800;
-let startLineLength = 90;
+let canvasHeight = 900;
+let startLineLength = 120;
 let startStrokeWidth = 15;
-let childBranchLengthRatio = 0.75;
+let childBranchLengthRatio = 0.8;
+
+let maxRep = 10;
+var currentRep = 0;
 
 function setup() {
-    createCanvas(canvasWidth, canvasHeight);
-    background(0);
-    stroke(randomColor());
-    strokeWeight(startStrokeWidth);
-    noLoop()
-    // /frameRate(8)
+    //noLoop()
+    frameRate(2)
 }
 
 function randomColor() {
@@ -39,7 +38,7 @@ function drawRightBranch(lineLength) {
 }
 
 function drawBranches(lineLength) {
-    if (lineLength > random(5, 30)) {
+    if (lineLength > random(5, 100)) {
         stroke(randomColor());
         strokeWeight(map(lineLength, startLineLength, 10, startStrokeWidth, 1));
         drawLeftBranch(lineLength);
@@ -48,31 +47,55 @@ function drawBranches(lineLength) {
 }
 
 function draw() {
+    /*
+    blendMode(DARKEST);
+
+    strokeWeight(0);
+    fill(50);
+    rect(0,0,300,300);
+
+    strokeWeight(30);
+    stroke(0, 0, 255);
+    line(25, 25, 75, 75);
+*/
+
+    createCanvas(canvasWidth, canvasHeight);
+    background(0);
+    stroke(randomColor());
+    strokeWeight(startStrokeWidth);
+
+    translate(canvasWidth/2, canvasHeight/2);
+
     push();
-    translate(40 + startLineLength * 2, 0);
+    rotate(0);
     line(0, 0, 0, startLineLength);
     translate(0, startLineLength);
     drawBranches(startLineLength * childBranchLengthRatio);
     pop();
 
     push();
-    translate(40 + startLineLength * 7, 0);
+    rotate(PI*0.5);
     line(0, 0, 0, startLineLength);
     translate(0, startLineLength);
     drawBranches(startLineLength * childBranchLengthRatio);
     pop();
 
     push();
-    translate(40 + startLineLength * 2, startLineLength * 4);
+    rotate(PI*1);
     line(0, 0, 0, startLineLength);
     translate(0, startLineLength);
     drawBranches(startLineLength * childBranchLengthRatio);
     pop();
 
     push();
-    translate(40 + startLineLength * 7, startLineLength * 4);
+    rotate(PI*1.5);
     line(0, 0, 0, startLineLength);
     translate(0, startLineLength);
     drawBranches(startLineLength * childBranchLengthRatio);
     pop();
+
+    currentRep += 1;
+    if (currentRep >= maxRep) {
+        currentRep = 0;
+    }
 }
