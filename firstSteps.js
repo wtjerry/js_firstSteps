@@ -4,18 +4,21 @@ let startLineLength = 120;
 let startStrokeWidth = 15;
 let childBranchLengthRatio = 0.8;
 
-let maxRep = 10;
+let maxRep = 25;
 var currentRep = 0;
+var gettingDarker = true;
 
 function setup() {
     //noLoop()
-    frameRate(2)
+    frameRate(5)
 }
 
 function randomColor() {
-    let a = random(50, 255);
-    let b = random(50, 255);
-    let c = random(50, 255);
+    x = map(currentRep, 0, maxRep, 0, 255);
+
+    let a = random(50, 255) - x;
+    let b = random(50, 255) - x;
+    let c = random(50, 255) - x;
     return color(a, b, c)
 }
 
@@ -94,8 +97,19 @@ function draw() {
     drawBranches(startLineLength * childBranchLengthRatio);
     pop();
 
-    currentRep += 1;
-    if (currentRep >= maxRep) {
-        currentRep = 0;
+    if (gettingDarker) {
+        currentRep += 3;
+        if (currentRep >= maxRep) {
+            currentRep = maxRep;
+            gettingDarker = false;
+        }
     }
+    else {
+        currentRep -= 1;
+        if (currentRep <= 0) {
+            currentRep = 0;
+            gettingDarker = true;
+        }
+    }
+
 }

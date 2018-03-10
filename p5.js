@@ -5908,7 +5908,7 @@ _dereq_('./p5.Color');
  * Bright fuschia rect in middle of canvas, 60 pixel width and height.
  * Two bright green rects on opposite sides of the canvas, both 45x80.
  * Four blue rects in each corner of the canvas, each are 35x35.
- * Bright sea green rect on left and darker rect on right of canvas, both 45x80.
+ * Bright sea green rect on left and gettingDarker rect on right of canvas, both 45x80.
  * Dark green rect on left and light green rect on right of canvas, both 45x80.
  * Dark blue rect on left and light teal rect on right of canvas, both 45x80.
  * blue rect on left and green on right, both with black outlines & 35x60.
@@ -6141,7 +6141,7 @@ p5.prototype.brightness = function(c) {
  * Bright fuschia rect in middle of canvas, 60 pixel width and height.
  * Two bright green rects on opposite sides of the canvas, both 45x80.
  * Four blue rects in each corner of the canvas, each are 35x35.
- * Bright sea green rect on left and darker rect on right of canvas, both 45x80.
+ * Bright sea green rect on left and gettingDarker rect on right of canvas, both 45x80.
  * Dark green rect on left and lighter green rect on right of canvas, both 45x80.
  * Dark blue rect on left and light teal rect on right of canvas, both 45x80.
  *
@@ -13750,7 +13750,7 @@ p5.prototype.createGraphics = function(w, h, renderer){
  * <li><code>EXCLUSION</code> - similar to <code>DIFFERENCE</code>, but less
  * extreme.</li>
  * <li><code>MULTIPLY</code> - multiply the colors, result will always be
- * darker.</li>
+ * gettingDarker.</li>
  * <li><code>SCREEN</code> - opposite multiply, uses inverse values of the
  * colors.</li>
  * <li><code>REPLACE</code> - the pixels entirely replace the others and
@@ -13764,7 +13764,7 @@ p5.prototype.createGraphics = function(w, h, renderer){
  * </li>
  * <li><code>DODGE</code> - lightens light tones and increases contrast,
  * ignores darks.</li>
- * <li><code>BURN</code> - darker areas are applied, increasing contrast,
+ * <li><code>BURN</code> - gettingDarker areas are applied, increasing contrast,
  * ignores lights.</li>
  * </ul>
  *
