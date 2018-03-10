@@ -1,6 +1,6 @@
-let canvasWidth = 800;
+let canvasWidth = 900;
 let canvasHeight = 800;
-let startLineLength = 150;
+let startLineLength = 90;
 let startStrokeWidth = 15;
 let childBranchLengthRatio = 0.75;
 
@@ -9,7 +9,8 @@ function setup() {
     background(0);
     stroke(randomColor());
     strokeWeight(startStrokeWidth);
-    noLoop();
+    noLoop()
+    // /frameRate(8)
 }
 
 function randomColor() {
@@ -38,7 +39,7 @@ function drawRightBranch(lineLength) {
 }
 
 function drawBranches(lineLength) {
-    if (lineLength > 10) {
+    if (lineLength > random(5, 30)) {
         stroke(randomColor());
         strokeWeight(map(lineLength, startLineLength, 10, startStrokeWidth, 1));
         drawLeftBranch(lineLength);
@@ -47,9 +48,31 @@ function drawBranches(lineLength) {
 }
 
 function draw() {
-    translate(canvasWidth / 2, 0);
+    push();
+    translate(40 + startLineLength * 2, 0);
     line(0, 0, 0, startLineLength);
-
     translate(0, startLineLength);
     drawBranches(startLineLength * childBranchLengthRatio);
+    pop();
+
+    push();
+    translate(40 + startLineLength * 7, 0);
+    line(0, 0, 0, startLineLength);
+    translate(0, startLineLength);
+    drawBranches(startLineLength * childBranchLengthRatio);
+    pop();
+
+    push();
+    translate(40 + startLineLength * 2, startLineLength * 4);
+    line(0, 0, 0, startLineLength);
+    translate(0, startLineLength);
+    drawBranches(startLineLength * childBranchLengthRatio);
+    pop();
+
+    push();
+    translate(40 + startLineLength * 7, startLineLength * 4);
+    line(0, 0, 0, startLineLength);
+    translate(0, startLineLength);
+    drawBranches(startLineLength * childBranchLengthRatio);
+    pop();
 }
