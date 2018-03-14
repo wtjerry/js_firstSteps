@@ -8,8 +8,18 @@ let maxRep = 25;
 var currentRep = 0;
 var gettingDarker = true;
 
+var ctx;
+var gifCreated = false;
+var gif = new GIF({
+    workers: 2,
+    quality: 10
+});
+gif.on('finished', function(blob) {
+    window.open(URL.createObjectURL(blob));
+});
+
 function setup() {
-    //noLoop()
+    ctx = createCanvas(canvasWidth, canvasHeight);
     frameRate(maxRep / 15)
 }
 
@@ -66,7 +76,6 @@ function loop_pulse() {
 }
 
 function draw() {
-    createCanvas(canvasWidth, canvasHeight);
     background(0);
     stroke(randomColor());
     strokeWeight(startStrokeWidth);
@@ -101,5 +110,15 @@ function draw() {
     drawBranches(startLineLength * childBranchLengthRatio);
     pop();
 
+    // or copy the pixels from a canvas context
+    gif.addFrame(ctx.elt, {copy: true});
+
     loop_pulse();
+}
+
+function mousePressed() {
+    if (gifCreated == false) {
+        gif.render();
+        gifCreated = true;
+    }
 }
